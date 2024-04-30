@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Function to display current time
+display_time() {
+    clear
+    echo "Digital Clock"
+    echo "Current Time: $(date +"%T")"
+}
+
+# Function to set alarm
+set_alarm() {
+    clear
+    echo "Set Alarm Time (HH:MM:SS): "
+    read -r alarm_time
+    echo "Alarm set for $alarm_time"
+    sleep $(( $(date -d "$alarm_time" +%s) - $(date +%s) ))
+    echo "ALARM! Wake up!"
+}
+
+# Function to display date
+display_date() {
+    clear
+    echo "Today's Date: $(date +"%A, %B %d, %Y")"
+}
+
+# Main menu
+clear
+echo "1. Display Time"
+echo "2. Set Alarm"
+echo "3. Display Date"
+read -p "Enter your choice: " choice
+
+case $choice in
+    1) display_time ;;
+    2) set_alarm ;;
+    3) display_date ;;
+    *) echo "Invalid choice. Please enter a number between 1 and 3." ;;
+esac
